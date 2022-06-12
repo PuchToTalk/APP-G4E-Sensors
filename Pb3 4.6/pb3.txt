@@ -1,0 +1,7 @@
+TIMBRE à 440 Hz le LA#3 diaposon 
+n'importe quelle signal produisant le même son à cette fréquence va produire le même son : 
+=> faux car ça dépend des harmoniques
+
+différences avec piano/ saxophone, donc le fondamental est à 440 hz
+ce qui change c'est la hauteur de ses harmoniques d'où reconnaitre instrument d'un autre : le timbre
+ex : piano : 7 octaves / ckarinettes : 3 harmoniques / saxophone : 2 octaves

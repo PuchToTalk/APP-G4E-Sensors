@@ -1,0 +1,66 @@
+2 Méthodes de recherche de pics
+---------------------
+IDEE DE NICOLAS :
+=> prendre 20 % et 30 %
+
+Indicateur de dispersion : ecart ttype
+
+Moyenne de tous les écarts
+
+
+imaginer uyn Mu + sigma pour le seuil si jamais remarque un ecart type grand
+
+sinon ecart type faible, poser une valeur du seuil plus basse comme Mu - sigma
+
+
+
+Faire l'étude sur les pics
+> IiiIiiI
+> on va avoir la moyenne des pics
+> si travaille que sur les valeurs des pics = on a plus l'entre deux et donc risque de imprécisions
+
+Pics utiles + pics moins intéressants qu'on peut virer par rapport à ce que l'on veut faire dans le contexte du travail.
+
+=> à éviter car valeurs heuristiques
+
+
+------------
+
+IDEE de DIMITRI :
+
+> pour avoir sûrement tous les pics 
+> idée convenable 
+mais soucis : 
+> risque d'être en relation des valeurs qu'on va avoir tout le fichier
+
+un seuil en valeur absolu : pas relatif 
+> car sur tous le fichier on pose le seuil à 5 % 
+> risque de casse gueule
+
+
+=> mieux vaut faire seuil adaptatif
+
+
+> mais bon début pour tester les algos
+> tester les valeurs pour cohérence
+donc tester les 2 méthodes puis comparer les résultats à la fin
+
+
+
+> travail du seuil pour valider l'ensemble du module
+
+------------
+
+Prof s'en fou de la recherche des pics
+mais 
+> pics les + hauts récoltés = 1 battement de coeur
+> vérifier l'info sur internet
+> trouver la fréquence cardiaque mais ne connaît pas le type de signal que c'est 
+=> regarder la définition que donne les médecins de la fréquence cardiaque
+
+
+Comment caractériser une fréquence cardiaque
+-> durée entre les 2 pics que représentent la fréquence cardiaque = fréquence
+
+ECG 
+-> 
