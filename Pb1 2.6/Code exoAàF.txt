@@ -1,0 +1,264 @@
+
+======================================================================
+%Code pour x(t)
+f0=1000;
+A=2;
+fe=16000;
+d=2;
+N=d*fe;
+n=0:N;
+x=A*sin(2*pi*f0*n/fe);
+figure
+plot(n/fe,x);
+axis([0,0.005,-2,2]);
+xlabel("Temps (s)");
+ylabel("Tension (V)");
+title("Signal in the time domain - 5 periods")
+
+
+%Code pour y(t)
+y=abs(x);
+
+figure(1)
+hold on;
+plot(n/fe,y);
+axis([0,0.005,-2,2]);
+legend("x(t)","y(t)");
+
+
+%Code pour les calculs
+n1=1;
+n2=N+1;
+
+%Pour x(t)
+xmoyx=1/(n2-n1+1)*sum(x);
+pmoyx=1/(n2-n1+1)*sum(x.^2);
+%nrjx=1/fe*sum(x.^2);
+Aeffx=sqrt(pmoyx);
+pdBmx=10*log10(pmoyx*10^3);
+
+%Pour y(t)
+xmoyy=1/(n2-n1+1)*sum(y);
+pmoyy=1/(n2-n1+1)*sum(y.^2);
+%nrjy=1/fe*sum(y.^2);
+Aeffy=sqrt(pmoyy);
+pdBmy=10*log10(pmoyy*10^3);
+
+
+
+
+il faut Fe/f0 échantillons dans une période 
+fonction round : arrondis entier inférieur 
+fonction ceil : entier supérieur 
+
+plot(t(1:),(x(1:
+
+valeur moy de sin, tjr 0 
+
+fonction mean : moyenne 
+
+
+fonction square
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%A
+f0=1000;            %fréquence du signal
+A=2;                %amplitude du signal
+fe=16000;           %fréquence d'échantillonnage
+d=2;                %durée du signal
+Te=1/fe;            %période d'échantillonnage
+t=(0:Te:d);         %vecteur temps
+x=A*sin(2*pi*f0*t); %expression temporelle du signal
+M5to=ceil(5*fe/f0); %nb d'échantillons ds 5 périodes (arrondi à l'entier sup)
+nt0=ceil(fe/f0);    %nb d'échantillons par période (arrondi à l'entier sup)
+figure
+plot(t(1:M5to),x(1:M5to));
+
+xlabel("Temps (s)");
+ylabel("Tension (V)");
+title("Signal in the time domain - 5 periods")
+
+%B
+%Pour x(t)
+xmoyx=mean(x(1:nt0));               %calcul de la moyenne de x
+pmoyx=mean(x(1:nt0).^2);            %calcul de la px moy de x
+%nrjx=1/fe*sum(x.^2);
+Aeffx=sqrt(pmoyx);                  %calcul de la valeur efficace de x
+pdBmx=10*log10(pmoyx*10^3);         %calcul de la px moy en dBm
+
+
+
+Codes Question C
+%C
+x1=abs(x);          %expression de la valeur absolue de x(t)
+
+figure(1)
+hold on;
+plot(t(1:M5to),x1(1:M5to));
+
+
+x2=square(sin(2*pi*f0*t))*0.75+1.25;        %expression de x2(t)
+figure(1)
+hold on;
+plot(t(1:M5to),x2(1:M5to));
+
+
+
+%Pour x1(t)                         de même pour x1
+xmoyx1=mean(x1(1:nt0));
+pmoyx1=mean(x1(1:nt0).^2);
+%nrjy=1/fe*sum(y.^2);
+Aeffx1=sqrt(pmoyx1);
+pdBmx1=10*log10(pmoyx1*10^3);
+
+%Pour x2(t)                         de même pour x2
+xmoyx2=mean(x2(1:nt0));
+pmoyx2=mean(x2(1:nt0).^2);
+%nrjy=1/fe*sum(y.^2);
+Aeffx2=sqrt(pmoyx2);
+pdBmx2=10*log10(pmoyx2*10^3);
+
+
+%D
+B=1.8;
+phi=pi/3;                   %déphasage
+y=B*sin(2*pi*f0*t+phi);
+figure(1)
+hold on;
+plot(t(1:M5to),y(1:M5to));
+legend("x(t)","|x(t)|","x2(t)","y(t)");
+
+
+
+%E
+%autocorrelation de x
+xco=[x,zeros(1,length(x))];             %création d'un vecteur xco de taille 2*length(x), les length(x) composantes supplémentaires sont des 0, on utilise length(x) plutôt que length(y) au cas où y et x n'auraient pas la même taille
+cxx=[];                                 %création d'un vecteur vide
+for i=0:length(x)-1                     %implémentation de chaque composante du vecteur cxx, ce vecteur est de taille length(x)
+    cxx(i+1)=1/(length(x))*sum(x.*xco(i+1:length(x)+i));   
+end
+%figure(1)
+%hold on;
+%plot(t(1:M5to),cxx(1:M5to));
+
+
+%intercorrelation x, y
+yco=[y,zeros(1,length(x))];             %création d'un vecteur yco de taille 2*length(x), les length(x) composantes supplémentaires sont des 0, on utilise length(x) plutôt que length(y) au cas où y et x n'auraient pas la même taille
+cxy=[];                                 %création d'un vecteur vide
+for i=1:length(x)                       %implémentation de chaque composante du vecteur cxy, ce vecteur est de taille length(x)
+    cxy(i)=1/(length(x))*sum(x.*yco(i:length(x)+i-1));
+end
+figure(1)
+hold on;
+plot(t(1:M5to),y(1:M5to));
+figure(1)hold on;
+plot(t(1:M5to),cxy(1:M5to));
+legend("x(t)", "y(t)", "interco");
+
+
+
+############################”””””
+%Question F
+%Fs=fréquence d'échantillonnage
+
+filenameMP="C:\Users\armel\Documents\MATLAB\MarteauPiqueur01.mp3";
+[u,Fs]=audioread(filenameMP);
+%figure
+%subplot(2,2,1)
+%plot(u);
+%title("Marteau Piqueur")
+%sound(u,Fs);
+Ts=1/Fs;                    %Ts période d'échantillonnage
+Df=0.1;                       %durée de la fenêtre
+K=floor((Df/Ts-1)/2);              %2*K=nb d'échantillons pour chaque échantillon
+
+PMP=[];
+pdBmMP=[];
+
+for i=K+1:length(u)-K
+    PMP(i)=1/(2*K+1)*sum(u(i-K:i+K).^2);
+    pdBmMP(i)=10*log10(PMP(i)*10^3)+63;
+end
+figure
+subplot(2,2,3);
+plot(pdBmMP);
+subplot(2,2,1);
+plot(PMP);
+
+
+filenameJ1="C:\Users\armel\Documents\MATLAB\Jardin01.mp3";
+[u2,Fs2]=audioread(filenameJ1);
+%subplot(2,2,2)
+%figure
+%plot(u2);
+%title("Jardin 1");
+%sound(u,Fs);
+
+Ts2=1/Fs2;                    %Ts période d'échantillonnage
+duree=length(u2)/Fs2;
+disp("Le signal dure "+ duree+" s.");
+Df=0.1;                       %durée de la fenêtre
+K=floor((Df/Ts2-1)/2);        %2*K=nb d'échantillons pour chaque échantillon  round((1/fs*Te)-1)/2)floor((Df/Ts2-1)/2)
+
+PJ1=[];
+
+
+for i=K+1:length(u2)-K
+    PJ1(i)=1/(2*K+1)*sum(u2(i-K:i+K).^2);
+    
+end
+pdBmJ1=10*log10(PJ1*10^3)+12;             %10*log10(PJ1*10^3);
+
+subplot(2,2,4);
+plot(pdBmJ1);
+subplot(2,2,2);
+plot(PJ1);
+
+
+
+
+
+%{
+filenameV="C:\Users\armel\Documents\MATLAB\Ville01.mp3";
+[u3,Fs3]=audioread(filenameV);
+subplot(2,2,3)
+plot(u3);
+title("Ville");
+%sound(u,Fs);
+
+filenameJ2="C:\Users\armel\Documents\MATLAB\Jardin02.mp3";
+[u4,Fs4]=audioread(filenameJ2);
+subplot(2,2,4)
+plot(u4);
+title("Jardin 2");
+%sound(w,Fs);
+
+%}
+
+
